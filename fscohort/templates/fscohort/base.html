@@ -25,7 +25,18 @@
     <div style="margin-top: 100px; margin-bottom: 100px" class="container">
       <h1>Hello Clarusway</h1>
 
-      {% block container %}{% endblock container %}
+      {% block container %}
+      
+      {% if messages %} 
+        {% for message in messages %} 
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% else %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endif %} 
+        {% endfor %} 
+      {% endif %} 
+      {% endblock container %}
     </div>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
